@@ -1,0 +1,52 @@
+public class Main {
+    public static void main(String[] args) {
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+
+        System.out.print("Saldo inicial: ");
+        double saldoInicial = sc.nextDouble();
+
+        System.out.print("Tasa de interés anual (%): ");
+        double tasa = sc.nextDouble();
+
+        CuentaAhorros cuenta1 = new CuentaAhorros(saldoInicial, tasa);
+
+        cuenta1.depositar(500);
+        System.out.println("Saldo después de depositar 500: " + cuenta1.verSaldo());
+
+        boolean exito = cuenta1.retirar(200);
+        System.out.println("Retiro exitoso: " + exito);
+        System.out.println("Saldo cuenta1: " + cuenta1.verSaldo());
+    }
+}
+
+class CuentaAhorros {
+    private double saldo;
+    private double tasaInteresAnual;
+
+    public CuentaAhorros(double saldoInicial, double tasaInteresAnual) {
+        this.saldo = saldoInicial;
+        this.tasaInteresAnual = tasaInteresAnual;
+    }
+
+    public void depositar(double cantidad) {
+        if (cantidad > 0) {
+            saldo += cantidad;
+        }
+    }
+
+    public boolean retirar(double cantidad) {
+        if (cantidad > 0 && saldo >= cantidad) {
+            saldo -= cantidad;
+            return true;
+        }
+        return false;
+    }
+
+    public double verSaldo() {
+        return saldo;
+    }
+
+    public double getTasaInteresAnual() {
+        return tasaInteresAnual;
+    }
+} 
